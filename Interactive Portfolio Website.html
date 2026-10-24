@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chithila Desandu Wanniarachchi | Student & Tech Portfolio</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #0a0b10;
+            --bg-card: #12141d;
+            --bg-card-hover: #1a1e2e;
+            --accent-gold: #ffd700;
+            --accent-gold-warm: #ffb703;
+            --accent-gold-dim: rgba(255, 215, 0, 0.12);
+            --accent-gold-glow: rgba(255, 215, 0, 0.35);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 215, 0, 0.22);
+            --font-mono: 'Fira Code', monospace;
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Animated Gold Canvas Background */
+        #tech-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Sticky Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 11, 16, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-family: var(--font-mono);
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .nav-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-gold);
+            object-fit: cover;
+            box-shadow: 0 0 12px var(--accent-gold-glow);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-logo:hover .nav-avatar {
+            transform: scale(1.08);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+            text-shadow: 0 0 8px var(--accent-gold-glow);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6.5rem 1.5rem 3rem 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 2.5rem;
+            align-items: center;
+            padding: 2.5rem 0;
+        }
+
+        @media (max-width: 868px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-mono);
+            color: var(--accent-gold);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(135deg, #ffffff 30%, var(--accent-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+            max-width: 650px;
+        }
+
+        /* Profile Card */
+        .profile-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 1.8rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-warm));
+        }
+
+        .profile-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-gold);
+            margin-bottom: 1.2rem;
+            box-shadow: 0 0 25px var(--accent-gold-glow);
+        }
+
+        .profile-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .profile-meta {
+            font-family: var(--font-mono);
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .contact-info-list {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            background: rgba(255, 215, 0, 0.03);
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        /* Buttons */
+        .app-btn {
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-warm));
+            color: #000;
+            font-weight: 700;
+            font-family: var(--font-sans);
+            padding: 0.8rem 1.6rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.25);
+        }
+
+        .app-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.45);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--accent-gold);
+            border: 1px solid var(--accent-gold);
+            padding: 0.8rem 1.6rem;
+            border-radius: 10px;
+            font-family: var(--font-mono);
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline:hover {
+            background: var(--accent-gold);
+            color: #000;
+            box-shadow: 0 0 15px var(--accent-gold-glow);
+        }
+
+        /* Sections Header */
+        section {
+            margin-top: 4rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2.2rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.8rem;
+            font-family: var(--font-mono);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .section-header .line {
+            flex-grow: 1;
+            height: 1px;
+            background: var(--border-color);
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.8rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 12px 30px rgba(255, 215, 0, 0.15);
+            background: var(--bg-card-hover);
+        }
+
+        .project-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            background: var(--accent-gold-dim);
+            color: var(--accent-gold);
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-launch {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-gold);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* URL Route Badge */
+        .url-badge {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--accent-gold-warm);
+            background: rgba(255, 183, 3, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            border: 1px dashed rgba(255, 183, 3, 0.4);
+            display: inline-block;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Timeline Components */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            border-left: 2px solid var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.4rem;
+            top: 0.35rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            box-shadow: 0 0 12px var(--accent-gold);
+        }
+
+        .timeline-date {
+            font-family: var(--font-mono);
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+            margin-bottom: 0.2rem;
+            font-weight: 600;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .timeline-sub {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 0.4rem;
+        }
+
+        /* SPA Views */
+        .page-view {
+            display: none;
+        }
+
+        .page-view.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Interactive Windows / Apps */
+        .app-window {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 1.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .app-input {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: #fff;
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .app-input:focus {
+            border-color: var(--accent-gold);
+        }
+
+        /* Custom Notification Toast */
+        #toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--bg-card);
+            color: var(--accent-gold);
+            border: 1px solid var(--accent-gold);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            display: none;
+            z-index: 2000;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Animated Gold Particles Canvas -->
+    <canvas id="tech-bg"></canvas>
+
+    <!-- Navigation Header -->
+    <nav>
+        <div class="nav-logo" onclick="navigateTo('')">
+            <img src="https://lh3.googleusercontent.com/d/16-w2w0-w" alt="Chithila Avatar" class="nav-avatar" onerror="this.src='https://via.placeholder.com/44'">
+            <span>Chithila Desandu</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#about" onclick="navigateTo('')">About</a></li>
+            <li><a href="#projects" onclick="navigateTo('')">Projects</a></li>
+            <li><a href="#education" onclick="navigateTo('')">Education</a></li>
+            <li><a href="#leadership" onclick="navigateTo('')">Leadership</a></li>
+            <li><a href="#contact" onclick="navigateTo('')">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- MAIN PORTFOLIO VIEW -->
+    <div id="main-portfolio" class="page-view active container">
+        
+        <!-- Hero Section -->
+        <section class="hero" id="about">
+            <div>
+                <div class="hero-subtitle">
+                    <i class="fa-solid fa-code" style="color: var(--accent-gold);"></i> // Student & Tech Enthusiast
+                </div>
+                <h1 class="hero-title">Chithila Desandu Wanniarachchi</h1>
+                <p class="hero-desc">
+                    A dedicated student at Ananda College passionate about software development, mathematics, and robotics. Actively engaged in extracurricular leadership, community service, and building functional technology projects.
+                </p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="#projects" class="app-btn"><i class="fa-solid fa-rocket"></i> Explore Projects</a>
+                    <a href="#contact" class="btn-outline"><i class="fa-solid fa-paper-plane"></i> Contact Me</a>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <img src="https://lh3.googleusercontent.com/d/16-w2w0-w" alt="Chithila Wanniarachchi" class="profile-img" onerror="this.src='https://via.placeholder.com/160'">
+                <div class="profile-name">C. D. Wanniarachchi</div>
+                <div class="profile-meta">Ananda College | Colombo</div>
+                <div class="contact-info-list">
+                    <div><i class="fa-solid fa-location-dot" style="color: var(--accent-gold); width: 20px;"></i> Piliyandala, Sri Lanka</div>
+                    <div><i class="fa-solid fa-envelope" style="color: var(--accent-gold); width: 20px;"></i> chithihiru@gmail.com</div>
+                    <div><i class="fa-solid fa-phone" style="color: var(--accent-gold); width: 20px;"></i> 071 421 2667</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-laptop-code" style="color: var(--accent-gold);"></i> Interactive Web Applications</h2>
+                <div class="line"></div>
+            </div>
+            
+            <div class="projects-grid">
+                <!-- Finance Tracker -->
+                <div class="project-card" onclick="navigateTo('/#/finance-tracker')">
+                    <div>
+                        <span class="url-badge">Path: /#/finance-tracker</span>
+                        <h3>Personal Finance Tracker (LKR)</h3>
+                        <p style="color: var(--text-muted); font-size: 0.92rem; margin-top: 0.5rem;">
+                            Budget and expense logging tool configured for Sri Lankan Rupees (Rs.), featuring live recalculation and transaction history.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">LKR (Rs.)</span>
+                            <span class="tag">DOM Engine</span>
+                        </div>
+                    </div>
+                    <div class="btn-launch">Launch Application <i class="fa-solid fa-arrow-right"></i></div>
+                </div>
+
+                <!-- Weather Dashboard -->
+                <div class="project-card" onclick="navigateTo('/#/weather-dashboard')">
+                    <div>
+                        <span class="url-badge">Path: /#/weather-dashboard</span>
+                        <h3>Weather & Air Quality Dashboard</h3>
+                        <p style="color: var(--text-muted); font-size: 0.92rem; margin-top: 0.5rem;">
+                            Interactive weather query tool fetching temperatures, humidity levels, and meteorological metrics globally.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">REST API</span>
+                            <span class="tag">Async Query</span>
+                            <span class="tag">Live Simulation</span>
+                        </div>
+                    </div>
+                    <div class="btn-launch">Launch Application <i class="fa-solid fa-arrow-right"></i></div>
+                </div>
+
+                <!-- Markdown Editor -->
+                <div class="project-card" onclick="navigateTo('/#/markdown-editor')">
+                    <div>
+                        <span class="url-badge">Path: /#/markdown-editor</span>
+                        <h3>Markdown Live Editor</h3>
+                        <p style="color: var(--text-muted); font-size: 0.92rem; margin-top: 0.5rem;">
+                            Split-pane markdown compiler enabling instant HTML previewing and text formatting parsing.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Frontend</span>
+                            <span class="tag">RegEx Parser</span>
+                            <span class="tag">Live Render</span>
+                        </div>
+                    </div>
+                    <div class="btn-launch">Launch Application <i class="fa-solid fa-arrow-right"></i></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education & Qualifications -->
+        <section id="education">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-graduation-cap" style="color: var(--accent-gold);"></i> Academic Credentials</h2>
+                <div class="line"></div>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2015 - PRESENT</div>
+                    <div class="timeline-title">Ananda College, Colombo</div>
+                    <div class="timeline-sub">G.C.E. Ordinary Level Examination</div>
+                    <p style="color: var(--text-muted);">Successfully achieved 9 'A' passes in the Ordinary Level Examinations.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">LANGUAGE QUALIFICATIONS</div>
+                    <div class="timeline-title">Cambridge English & Japanese (JLPT)</div>
+                    <p style="color: var(--text-muted);">• Completed Cambridge English Qualifications up to First Certificate in English (FCE) with distinctions.</p>
+                    <p style="color: var(--text-muted);">• Passed Japanese Language Proficiency Test (JLPT N5).</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">TRINITY COLLEGE LONDON</div>
+                    <div class="timeline-title">Music Examinations</div>
+                    <p style="color: var(--text-muted);">Passed music examinations up to Grade 5 in Music Theory and Grade 3 in Piano performance.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leadership & Activities -->
+        <section id="leadership">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-users" style="color: var(--accent-gold);"></i> Leadership & Extra-Curriculars</h2>
+                <div class="line"></div>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">INTERACT CLUB OF ANANDA COLLEGE</div>
+                    <div class="timeline-title">Archival Secretary & Former Community Service Director</div>
+                    <p style="color: var(--text-muted);">Currently serving as Archival Secretary. Previously served as Director of Community Service for the 2025/26 term.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">SPORTS LEADERSHIP</div>
+                    <div class="timeline-title">Table Tennis Team Captain</div>
+                    <p style="color: var(--text-muted);">Served as Captain for both the Under-16 and Under-18 Table Tennis squads at Ananda College.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">JAPANESE ASSOCIATION</div>
+                    <div class="timeline-title">Organizing Committee Member</div>
+                    <p style="color: var(--text-muted);">Organizing Committee member for the Ananda College Japanese Association (2025/26).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section id="contact" style="margin-bottom: 4rem;">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-paper-plane" style="color: var(--accent-gold);"></i> Get In Touch</h2>
+                <div class="line"></div>
+            </div>
+
+            <div class="app-window" style="max-width: 650px; margin: 0 auto;">
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted); text-align: center;">
+                    Have an academic project, tech idea, or inquiry? Send a direct message below.
+                </p>
+                <form onsubmit="handleContactSubmit(event)">
+                    <input type="text" id="contact-name" class="app-input" placeholder="Your Full Name" required>
+                    <input type="email" id="contact-email" class="app-input" placeholder="Your Email Address" required>
+                    <textarea id="contact-msg" class="app-input" rows="4" placeholder="Your Message..." required></textarea>
+                    <button type="submit" class="app-btn" style="width: 100%;"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- DEDICATED PAGE: FINANCE APP (Route: /#/finance-tracker) -->
+    <div id="app-finance" class="page-view container">
+        <button class="btn-outline" onclick="navigateTo('')" style="margin-bottom: 2rem;">
+            <i class="fa-solid fa-arrow-left"></i> Back to Main Portfolio
+        </button>
+        <span class="url-badge">URL: /#/finance-tracker</span>
+        <h2 style="font-family: var(--font-mono); font-size: 2rem; color: #fff;">
+            <i class="fa-solid fa-wallet" style="color: var(--accent-gold);"></i> Personal Finance Tracker (LKR)
+        </h2>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Track incomes and daily expenses strictly in Sri Lankan Rupees (Rs.).</p>
+
+        <div class="app-window">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <input type="text" id="fin-desc" class="app-input" placeholder="Entry Title (e.g., School Supplies)">
+                <input type="number" id="fin-amount" class="app-input" placeholder="Amount in Rs.">
+            </div>
+            <button class="app-btn" onclick="addFinanceItem()"><i class="fa-solid fa-plus"></i> Add Entry</button>
+
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem; font-family: var(--font-mono); border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
+                Recent Transactions Log
+            </h3>
+            <ul id="fin-list" style="list-style: none; font-family: var(--font-mono);">
+                <li style="padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between;">
+                    <span><i class="fa-solid fa-arrow-right" style="color: var(--accent-gold); font-size: 0.8rem;"></i> School Books & Stationery</span>
+                    <span style="color: var(--accent-gold);">Rs. 2,500</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- DEDICATED PAGE: WEATHER APP (Route: /#/weather-dashboard) -->
+    <div id="app-weather" class="page-view container">
+        <button class="btn-outline" onclick="navigateTo('')" style="margin-bottom: 2rem;">
+            <i class="fa-solid fa-arrow-left"></i> Back to Main Portfolio
+        </button>
+        <span class="url-badge">URL: /#/weather-dashboard</span>
+        <h2 style="font-family: var(--font-mono); font-size: 2rem; color: #fff;">
+            <i class="fa-solid fa-cloud-sun" style="color: var(--accent-gold);"></i> Weather & Air Quality Dashboard
+        </h2>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Query temperature and atmospheric data for global cities.</p>
+
+        <div class="app-window">
+            <div style="display: flex; gap: 1rem;">
+                <input type="text" id="weather-city" class="app-input" placeholder="Enter city (e.g. Colombo, Tokyo, London)" style="margin-bottom: 0;">
+                <button class="app-btn" onclick="getWeather()" style="white-space: nowrap;"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+            </div>
+
+            <div id="weather-result" style="margin-top: 2rem; font-family: var(--font-mono);">
+                <!-- Simulated output renders here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- DEDICATED PAGE: MARKDOWN APP (Route: /#/markdown-editor) -->
+    <div id="app-markdown" class="page-view container">
+        <button class="btn-outline" onclick="navigateTo('')" style="margin-bottom: 2rem;">
+            <i class="fa-solid fa-arrow-left"></i> Back to Main Portfolio
+        </button>
+        <span class="url-badge">URL: /#/markdown-editor</span>
+        <h2 style="font-family: var(--font-mono); font-size: 2rem; color: #fff;">
+            <i class="fa-solid fa-file-code" style="color: var(--accent-gold);"></i> Markdown Live Editor
+        </h2>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Real-time text parsing with instant HTML output side-by-side.</p>
+
+        <div class="app-window" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+            <div>
+                <h4 style="font-family: var(--font-mono); margin-bottom: 0.5rem; color: var(--accent-gold);">Markdown Input</h4>
+                <textarea id="md-input" class="app-input" style="height: 280px; font-family: var(--font-mono);" oninput="renderMD()"># Welcome to Chithila's Editor
+Type **bold text** or *italic text* live!
+- Ananda College
+- Software Engineering
+- Robotics & Science</textarea>
+            </div>
+            <div>
+                <h4 style="font-family: var(--font-mono); margin-bottom: 0.5rem; color: var(--accent-gold);">Live Preview</h4>
+                <div id="md-output" style="height: 280px; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 8px; border: 1px solid var(--border-color); overflow-y: auto;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast">Message notification</div>
+
+    <script>
+        // Gold Tech Floating Particles Canvas
+        const canvas = document.getElementById('tech-bg');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const particles = Array.from({ length: 48 }, () => ({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * 0.7,
+            vy: (Math.random() - 0.5) * 0.7,
+            radius: Math.random() * 2 + 1
+        }));
+
+        function drawBackground() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(255, 215, 0, 0.6)';
+            ctx.strokeStyle = 'rgba(255, 215, 0, 0.12)';
+
+            particles.forEach((p, i) => {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                for (let j = i + 1; j < particles.length; j++) {
+                    const p2 = particles[j];
+                    const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                    if (dist < 125) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+            });
+
+            requestAnimationFrame(drawBackground);
+        }
+        drawBackground();
+
+        // SPA Hash Router Logic
+        function handleRouting() {
+            const hash = window.location.hash;
+            document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+
+            if (hash === '#/finance-tracker') {
+                document.getElementById('app-finance').classList.add('active');
+            } else if (hash === '#/weather-dashboard') {
+                document.getElementById('app-weather').classList.add('active');
+            } else if (hash === '#/markdown-editor') {
+                document.getElementById('app-markdown').classList.add('active');
+            } else {
+                document.getElementById('main-portfolio').classList.add('active');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function navigateTo(path) {
+            window.location.hash = path;
+        }
+
+        window.addEventListener('hashchange', handleRouting);
+        window.addEventListener('DOMContentLoaded', handleRouting);
+
+        // Notification Toast
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 3000);
+        }
+
+        // Form Handler
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            showToast("Thank you! Message sent successfully.");
+            document.getElementById('contact-name').value = '';
+            document.getElementById('contact-email').value = '';
+            document.getElementById('contact-msg').value = '';
+        }
+
+        // Finance App Logic
+        function addFinanceItem() {
+            const desc = document.getElementById('fin-desc').value.trim();
+            const amt = document.getElementById('fin-amount').value.trim();
+            if(!desc || !amt) return;
+
+            const list = document.getElementById('fin-list');
+            const li = document.createElement('li');
+            li.style.cssText = "padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between;";
+            li.innerHTML = `<span><i class="fa-solid fa-arrow-right" style="color: var(--accent-gold); font-size: 0.8rem;"></i> ${desc}</span> <span style="color: var(--accent-gold);">Rs. ${parseInt(amt).toLocaleString()}</span>`;
+            list.prepend(li);
+
+            document.getElementById('fin-desc').value = '';
+            document.getElementById('fin-amount').value = '';
+            showToast("Transaction added to LKR ledger!");
+        }
+
+        // Weather App Simulation
+        function getWeather() {
+            const city = document.getElementById('weather-city').value.trim() || 'Colombo';
+            const res = document.getElementById('weather-result');
+            res.innerHTML = `<p style="color: var(--accent-gold);"><i class="fa-solid fa-spinner fa-spin"></i> Querying atmospheric metrics for ${city}...</p>`;
+            
+            setTimeout(() => {
+                res.innerHTML = `
+                    <div style="background: rgba(255,215,0,0.05); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color);">
+                        <h3 style="color: var(--accent-gold); font-size: 1.4rem; margin-bottom: 1rem;"><i class="fa-solid fa-location-dot"></i> ${city.toUpperCase()}</h3>
+                        <p><strong>Temperature:</strong> 29°C / 84.2°F</p>
+                        <p><strong>Conditions:</strong> Partly Sunny & Calm</p>
+                        <p><strong>Humidity:</strong> 76%</p>
+                        <p><strong>Air Quality Index (AQI):</strong> 42 (Good)</p>
+                    </div>
+                `;
+            }, 600);
+        }
+
+        // Markdown Parser
+        function renderMD() {
+            const input = document.getElementById('md-input').value;
+            const output = document.getElementById('md-output');
+            output.innerHTML = input
+                .replace(/^# (.*$)/gim, '<h1 style="color:var(--accent-gold); margin-bottom: 0.5rem;">$1</h1>')
+                .replace(/\*\*(.*)\*\*/gim, '<b style="color:#fff;">$1</b>')
+                .replace(/\*(.*)\*/gim, '<i>$1</i>')
+                .replace(/^- (.*$)/gim, '<li style="margin-left: 1.2rem;">$1</li>');
+        }
+        renderMD();
+    </script>
+</body>
+</html>
