@@ -536,7 +536,7 @@
             
             <div class="projects-grid">
                 <!-- Finance Tracker -->
-                <div class="project-card" onclick="navigateTo('https://chithilaw.github.io/quizzer/')">
+                <div class="project-card" onclick="goTo('https://chithilaw.github.io/quizzer/')">
                     <div>
                        <!-- <span class="url-badge">Path: /#/finance-tracker</span> -->
                         <h3>Past Paper Quiz App</h3>
@@ -792,6 +792,11 @@ Type **bold text** or *italic text* live!
         function navigateTo(path) {
             window.location.hash = path;
         }
+
+        function goTo(here) { 
+  window.location.hash = here; 
+  window.location.href = "https://chithilaw.github.io/quizzer/";
+}
 
         window.addEventListener('hashchange', handleRouting);
         window.addEventListener('DOMContentLoaded', handleRouting);
