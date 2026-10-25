@@ -488,11 +488,11 @@
             <span>Chithila Wanniarachchi</span>
         </div>
         <ul class="nav-links">
-            <li><a href="#about" onclick="navigateTo('')">About</a></li>
-            <li><a href="#projects" onclick="navigateTo('projects'); return false;">Projects</a></li>
-            <li><a href="#education" onclick="navigateTo('')">Education</a></li>
-            <li><a href="#leadership" onclick="navigateTo('')">Leadership</a></li>
-            <li><a href="#contact" onclick="navigateTo('')">Contact</a></li>
+            <li><a href="#about" onclick="event.preventDefault(); navigateTo('about');">About</a></li>
+            <li><a href="#projects" onclick="event.preventDefault(); navigateTo('projects');">Projects</a></li>
+            <li><a href="#education" onclick="event.preventDefault(); navigateTo('education');">Education</a></li>
+            <li><a href="#leadership" onclick="event.preventDefault(); navigateTo('leadership');">Leadership</a></li>
+            <li><a href="#contact" onclick="event.preventDefault(); navigateTo('contact');">Contact</a></li>
         </ul>
     </nav>
 
@@ -790,12 +790,23 @@ Type **bold text** or *italic text* live!
         }
 
         function navigateTo(path) {
-            window.location.hash = path;
-        }
+            const targetId = path.startsWith('#') ? path : '#' + path;
+            const targetElement = document.querySelector(targetId);
+
+        if (targetElement) {
+            
+            targetElement.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+            
+        history.pushState(null, null, targetId);
+    }
+}
 
         function goTo(here) { 
-  window.location.hash = here; 
-  window.location.href = "https://chithilaw.github.io/quizzer/";
+            window.location.hash = here; 
+            window.location.href = "https://chithilaw.github.io/quizzer/";
 }
 
         window.addEventListener('hashchange', handleRouting);
